@@ -179,6 +179,57 @@ bool loadFromFile(pipe& p, company& c, const string& filename) {
 }
 
 int main() {
+    pipe p1;
+    company c1;
+    string filename = "pipeline_data.txt";
+    int choice;
+
+    do {
+        cout << "\nMenu:\n";
+        cout << "1. Add pipe\n";
+        cout << "2. Add company\n";
+        cout << "3. Display all\n";
+        cout << "4. Edit pipe\n";
+        cout << "5. Edit company\n";
+        cout << "6. Save to file\n";
+        cout << "7. Load from file\n";
+        cout << "0. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                p1 = readPipe();
+                break;
+            case 2:
+                c1 = readCompany();
+                break;
+            case 3:
+                displayPipe(p1);
+                displayCompany(c1);
+                break;
+            case 4:
+                modifyRepair(p1);
+                break;
+            case 5:
+                modifyWorkshops(c1);
+                break;
+            case 6:
+                saveToFile(p1, c1, filename);
+                break;
+            case 7:
+                if (!loadFromFile(p1, c1, filename)) {
+                    cout << "Error loading data from file." << endl;
+                }
+                break;
+            case 0:
+                cout << "Goodbye!" << endl;
+                break;
+            default:
+                cout << "Invalid choice. Please try again." << endl;
+                break;
+        }
+    } while (choice != 0);
     
     return 0;
 }
