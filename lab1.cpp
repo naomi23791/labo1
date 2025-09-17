@@ -13,7 +13,7 @@ struct pipe
     bool repair;
 };
 
-struct company
+struct kc
 {
     string name;
     int workshop;
@@ -38,7 +38,7 @@ pipe readPipe() {
 
     while (true) {
         cout << "Diameter: ";
-        if (cin >> p.diameter) break;
+        if (cin >> p.diameter && p.diameter != 0) break;
         cout << "Invalid input. Please enter an integer.\n";
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -59,9 +59,8 @@ pipe readPipe() {
     return p;
 }
 
-
-company readCompany() {
-    company c;
+kc readCompany() {
+    kc c;
     cout << "Enter the informations of the company in this order:\nname, number of workshops, number of workshops in operation, classes\n";
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     getline(cin, c.name);
@@ -98,7 +97,7 @@ void displayPipe(const pipe& p) {
 }
 
 
-void displayCompany(const company& c) {
+void displayCompany(const kc& c) {
     cout << "The informations of the company are:\n"
          << "name: " << c.name << endl
          << "workshop: " << c.workshop << endl
@@ -121,7 +120,7 @@ void modifyRepair(pipe& p) {
     }
 }
 
-void modifyWorkshops(company& c) {
+void modifyWorkshops(kc& c) {
     int choice;
     cout << "Do you want to start (1) or stop (0) a workshop? ";
     cin >> choice;
@@ -143,7 +142,7 @@ void modifyWorkshops(company& c) {
     }
 }
 
-void saveToFile(const pipe& p, const company& c, const string& filename) {
+void saveToFile(const pipe& p, const kc& c, const string& filename) {
     ofstream file(filename);
     if (file.is_open()) {
         file << p.name << " " << p.length << " " << p.diameter << " " << p.repair << endl;
@@ -156,7 +155,7 @@ void saveToFile(const pipe& p, const company& c, const string& filename) {
 }
 
 
-bool loadFromFile(pipe& p, company& c, const string& filename) {
+bool loadFromFile(pipe& p, kc& c, const string& filename) {
     ifstream file(filename);
     if (file.is_open()) {
         file >> p.name >> p.length >> p.diameter >> p.repair;
@@ -176,7 +175,7 @@ bool loadFromFile(pipe& p, company& c, const string& filename) {
 
 int main() {
     pipe p1;
-    company c1;
+    kc c1;
     string filename = "pipeline_data.txt";
     int choice;
 
