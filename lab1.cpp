@@ -21,7 +21,6 @@ struct company
     string classes;
 };
 
-// Fonction pour lire les données d'un pipe
 pipe readPipe() {
     pipe p;
     cout << "Enter the informations of pipe in this order:\nname, length, diameter, repair (0 for no, 1 for yes)\n";
@@ -60,7 +59,7 @@ pipe readPipe() {
     return p;
 }
 
-// Fonction pour lire les données d'une company
+
 company readCompany() {
     company c;
     cout << "Enter the informations of the company in this order:\nname, number of workshops, number of workshops in operation, classes\n";
@@ -90,7 +89,6 @@ company readCompany() {
     return c;
 }
 
-// Fonction pour afficher les données d'un pipe
 void displayPipe(const pipe& p) {
     cout << "\nThe informations of pipe are:\n"
          << "name: " << p.name << endl
@@ -99,7 +97,7 @@ void displayPipe(const pipe& p) {
          << "repair or not: " << (p.repair ? "yes" : "no") << endl;
 }
 
-// Fonction pour afficher les données d'une company
+
 void displayCompany(const company& c) {
     cout << "The informations of the company are:\n"
          << "name: " << c.name << endl
@@ -108,7 +106,7 @@ void displayCompany(const company& c) {
          << "classes: " << c.classes << endl;
 }
 
-// Fonction pour modifier l'indicateur "repair" d'un pipe
+
 void modifyRepair(pipe& p) {
     int repairInput;
     while (true) {
@@ -123,7 +121,6 @@ void modifyRepair(pipe& p) {
     }
 }
 
-// Fonction pour démarrer ou arrêter un atelier dans une company
 void modifyWorkshops(company& c) {
     int choice;
     cout << "Do you want to start (1) or stop (0) a workshop? ";
@@ -146,7 +143,6 @@ void modifyWorkshops(company& c) {
     }
 }
 
-// Fonction pour sauvegarder les données dans un fichier
 void saveToFile(const pipe& p, const company& c, const string& filename) {
     ofstream file(filename);
     if (file.is_open()) {
@@ -159,7 +155,7 @@ void saveToFile(const pipe& p, const company& c, const string& filename) {
     }
 }
 
-// Fonction pour charger les données depuis un fichier
+
 bool loadFromFile(pipe& p, company& c, const string& filename) {
     ifstream file(filename);
     if (file.is_open()) {
